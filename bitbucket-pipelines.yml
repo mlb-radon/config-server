@@ -1,0 +1,45 @@
+# Propere uitleg over BickBucket Pipelines  https://think-engineer.com/blog/devops/bitbucket-pipelines-building-publishing-and-re-tagging-docker-images-in-a-ci-cd-workflow
+options:
+  docker: true
+
+definitions:
+  services:
+    docker:
+      memory: 2048 # Increase memory to 4GB (or more)
+
+  steps:
+    - step: &build-and-push
+        name: Build and push docker image
+        services:
+          - docker
+        script:
+          - export DOCKER_IMAGE="bruyland/$BITBUCKET_REPO_SLUG"
+          - export DOCKER_BUILDKIT=1
+          # Decide tags: use git tag if present, otherwise 'latest'
+          - |
+            if [ -n "$BITBUCKET_TAG" ]; then
+              TAGS=("$BITBUCKET_TAG")
+            else
+              TAGS=("latest")
+            fi
+            TAGS+=("sha-${BITBUCKET_COMMIT:0:7}")
+          # Build once
+          - docker build --build-arg COMMIT="$BITBUCKET_COMMIT" --build-arg TAG="$BITBUCKET_TAG" -t "$DOCKER_IMAGE:build" .
+          # Login safely
+          - echo "$DOCKER_HUB_PASSWORD" | docker login --username "$DOCKER_HUB_USERNAME" --password-stdin
+          # Tag and push
+          - |
+            for t in "${TAGS[@]}"; do
+              docker tag "$DOCKER_IMAGE:build" "$DOCKER_IMAGE:$t"
+              docker push "$DOCKER_IMAGE:$t"
+            done
+
+pipelines:
+  branches:
+    master:
+      - step: *build-and-push
+    develop:
+      - step: *build-and-push
+  tags:
+    '*':
+      - step: *build-and-push

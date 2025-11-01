@@ -1,0 +1,23 @@
+{
+  "name": "config-server",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "postinstall": "node ./scripts/create-symlinks.js",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.3.2",
+    "semver": "^7.7.3"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "radashi": "^12.6.2"
+  }
+}
+
