@@ -2,11 +2,15 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from '@src/app.module'
 import * as express from 'express'
 import { NestExpressApplication } from '@nestjs/platform-express'
+import { InternalDisabledLogger } from './support/logger'
 
 export const APP_NAME = 'config-server'
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  const logger = new InternalDisabledLogger()
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: new InternalDisabledLogger(),
+  })
 
   // increase body size limits so payloads >100KB are accepted (set as needed)
   app.use(express.json({ limit: '5mb' }))
