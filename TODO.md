@@ -4,3 +4,4 @@
 
 - Zelf de werking van npm version + hooks nalezen en iets browen dat de versies synchroniseert
 - git historiek verwijderen in opnieuw git initi uitvoeren
+-
