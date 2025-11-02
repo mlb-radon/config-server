@@ -1,5 +1,6 @@
 {
   "person": {
+    "$id": "person",
     "type": "object",
     "properties": {
       "id": {
@@ -19,8 +20,7 @@
     "description": "A person object (base schema)"
   },
   "email": {
-    "$schema": "https://json-schema.org/draft-07/schema#",
-    "$id": "my-product-schema",
+    "$id": "email",
     "type": "object",
     "properties": {
       "subject": {
@@ -33,8 +33,9 @@
       },
       "customer": {
         "allOf": [
-          { "$ref": "#/person" },
+          { "$ref": "person" },
           {
+            "type": "object",
             "required": [ "emailAddress" ],
             "description": "Person with required email for email context"
           }
@@ -43,8 +44,7 @@
     }
   },
   "product": {
-    "$schema": "https://json-schema.org/draft-07/schema#",
-    "$id": "my-product-schema",
+    "$id": "product",
     "type": "object",
     "properties": {
       "productId": {
@@ -63,7 +63,7 @@
         "description": "Tags associated with the product"
       },
       "owner": {
-        "$ref": "#/person"
+        "$ref": "person"
       }
     }
   }

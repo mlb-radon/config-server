@@ -21,24 +21,19 @@ export class SchemaValidationService {
     this.getSchema('email')
   }
 
-  test() {
-    const validate = this.ajv.compile(emailSchema)
-    const data = JSON.parse(productData)
-    const valid = validate(data)
-    if (!valid) {
-      console.log('Validation errors:', validate.errors)
-    } else {
-      console.log('Validation succeeded')
-    }
-  }
-
   async getSchema(code: string) {
     const em = this.em.fork() //TODO: nog te verwijderen !
     const all: Schema[] = await em.findAll('Schema')
-    const fundamental = all.filter(s => s.fundamental).find(s => s.code === code)
+    const fundamental = all.filter(s => s.fundamental).find(s => s.code === code)?.jsonSchema
     if (!fundamental) {
       throw new NotFoundException(`Schema with code '${code}' not found`)
     }
+    const schemas = all.map(s => s.jsonSchema)
+    schemas.forEach(s => this.ajv.addSchema(typeof s === 'string' ? JSON.parse(s) : s))
+    const fSchema = typeof fundamental === 'string' ? JSON.parse(fundamental) : fundamental
+    const validate = this.ajv.compile(fSchema)
+    const valid = validate(JSON.parse(emailData))
+    console.log(valid)
   }
 }
 
@@ -51,42 +46,7 @@ interface Email {
     emailAddress: string
   }
 }
-
-const emailSchema = {
-  $id: 'my-product-schema',
-  type: 'object',
-  properties: {
-    subject: {
-      type: 'string',
-      description: 'Subject of the email',
-    },
-    content: {
-      type: 'string',
-      description: 'Content of the email',
-    },
-    customer: {
-      type: 'object',
-      properties: {
-        id: {
-          type: 'integer',
-          description: 'The unique identifier for the customer',
-        },
-        name: {
-          type: 'string',
-          description: 'Name of the customer',
-        },
-        emailAddress: {
-          type: 'string',
-          description: 'Email address of the customer',
-        },
-      },
-      required: ['id', 'name', 'emailAddress'],
-      description: 'Customer receiving the email',
-    },
-  },
-}
-
-const productData = `{
+const emailData = `{
   "subject": "Your reservation",
   "content": "Your reservation is confirmed.",
   "customer": {
