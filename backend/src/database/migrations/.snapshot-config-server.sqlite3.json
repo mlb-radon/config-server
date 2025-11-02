@@ -34,6 +34,17 @@
           "length": null,
           "mappedType": "datetime"
         },
+        "fundamental": {
+          "name": "fundamental",
+          "type": "integer",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "default": "false",
+          "mappedType": "integer"
+        },
         "code": {
           "name": "code",
           "type": "text",
@@ -54,18 +65,18 @@
           "length": null,
           "mappedType": "text"
         },
-        "schema": {
-          "name": "schema",
-          "type": "text",
+        "json_schema": {
+          "name": "json_schema",
+          "type": "json",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
           "length": null,
-          "mappedType": "text"
+          "mappedType": "json"
         }
       },
-      "name": "definition",
+      "name": "schema",
       "indexes": [
         {
           "keyName": "primary",
@@ -80,94 +91,6 @@
       ],
       "checks": [],
       "foreignKeys": {},
-      "nativeEnums": {}
-    },
-    {
-      "columns": {
-        "definition_1_id": {
-          "name": "definition_1_id",
-          "type": "integer",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "integer"
-        },
-        "definition_2_id": {
-          "name": "definition_2_id",
-          "type": "integer",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "integer"
-        }
-      },
-      "name": "definition_parents",
-      "indexes": [
-        {
-          "columnNames": [
-            "definition_1_id"
-          ],
-          "composite": false,
-          "keyName": "definition_parents_definition_1_id_index",
-          "constraint": false,
-          "primary": false,
-          "unique": false
-        },
-        {
-          "columnNames": [
-            "definition_2_id"
-          ],
-          "composite": false,
-          "keyName": "definition_parents_definition_2_id_index",
-          "constraint": false,
-          "primary": false,
-          "unique": false
-        },
-        {
-          "keyName": "primary",
-          "columnNames": [
-            "definition_1_id",
-            "definition_2_id"
-          ],
-          "composite": true,
-          "constraint": true,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {
-        "definition_parents_definition_1_id_foreign": {
-          "constraintName": "definition_parents_definition_1_id_foreign",
-          "columnNames": [
-            "definition_1_id"
-          ],
-          "localTableName": "definition_parents",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "definition",
-          "deleteRule": "cascade",
-          "updateRule": "cascade"
-        },
-        "definition_parents_definition_2_id_foreign": {
-          "constraintName": "definition_parents_definition_2_id_foreign",
-          "columnNames": [
-            "definition_2_id"
-          ],
-          "localTableName": "definition_parents",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "definition",
-          "deleteRule": "cascade",
-          "updateRule": "cascade"
-        }
-      },
       "nativeEnums": {}
     }
   ],

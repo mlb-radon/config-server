@@ -8,3 +8,4 @@
 - backend/src/config/index.ts uitsluiten van git + verwijderen van de repo
 - Nakijken of er zod-achtige library bestaat die at-runtime verwerkt kunnen worden => Ajv + JSON Schema (most robust)
 - Revisit the `npm version` problem
+- Add detailed logging

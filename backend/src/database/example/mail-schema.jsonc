@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "my-product-schema",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "description": "Subject of the email"
+    },
+    "content": {
+      "type": "string",
+      "description": "Content of the email"
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique identifier for the customer"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the customer"
+        },
+        "emailAddress": {
+          "type": "string",
+          "description": "Email address of the customer"
+        }
+      },
+      "required": [ "id", "name", "emailAddress" ],
+      "description": "Customer receiving the email"
+    }
+  }
+}
+
+/**
+ * This is an example schema for anemail.
+ {
+  "subject": "Your reservation",
+  "content": "Your reservation is confirmed.",
+  "customer": {
+    "id": 321,
+    "name": "Stefaan Vandevelde",
+    "emailAddress": "stefaan.vandevelde@example.com",
+  },
+}
+*/

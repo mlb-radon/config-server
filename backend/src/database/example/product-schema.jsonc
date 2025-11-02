@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "my-product-schema",
+  "type": "object",
+  "properties": {
+    "productId": {
+      "type": "integer",
+      "description": "The unique identifier for a product"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Name of the product"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the product"
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique identifier for the owner"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the owner"
+        }
+      },
+      "required": [ "id", "name" ],
+      "description": "Owner of the product"
+    }
+  }
+}
+
+/**
+ * This is an example schema for a product.
+  {
+    "productId": 1,
+    "productName": "A green door",
+    "tags": ["home", "green"],
+    "owner": {
+      "id": 123,
+      "name": "John Doe"
+    }
+  }
+*/

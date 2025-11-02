@@ -1,0 +1,70 @@
+{
+  "person": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "description": "The unique identifier for the person"
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the person"
+      },
+      "emailAddress": {
+        "type": "string",
+        "description": "Email address of the customer"
+      }
+    },
+    "required": [ "id", "name" ],
+    "description": "A person object (base schema)"
+  },
+  "email": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "my-product-schema",
+    "type": "object",
+    "properties": {
+      "subject": {
+        "type": "string",
+        "description": "Subject of the email"
+      },
+      "content": {
+        "type": "string",
+        "description": "Content of the email"
+      },
+      "customer": {
+        "allOf": [
+          { "$ref": "#/person" },
+          {
+            "required": [ "emailAddress" ],
+            "description": "Person with required email for email context"
+          }
+        ]
+      }
+    }
+  },
+  "product": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "my-product-schema",
+    "type": "object",
+    "properties": {
+      "productId": {
+        "type": "integer",
+        "description": "The unique identifier for a product"
+      },
+      "productName": {
+        "type": "string",
+        "description": "Name of the product"
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Tags associated with the product"
+      },
+      "owner": {
+        "$ref": "#/person"
+      }
+    }
+  }
+}

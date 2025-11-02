@@ -1,0 +1,69 @@
+"id";"created_at";"updated_at";"fundamental";"code";"description";"json_schema"
+1;"2025-11-02 10:15:54";;false;person;Generic person;"{
+    ""type"": ""object"",
+    ""properties"": {
+      ""id"": {
+        ""type"": ""integer"",
+        ""description"": ""The unique identifier for the person""
+      },
+      ""name"": {
+        ""type"": ""string"",
+        ""description"": ""Name of the person""
+      },
+      ""emailAddress"": {
+        ""type"": ""string"",
+        ""description"": ""Email address of the customer""
+      }
+    },
+    ""required"": [ ""id"", ""name"" ],
+    ""description"": ""A person object (base schema)""
+  }"
+2;"2025-11-02 10:16:32";;true;email;Very simple email;"{
+    ""$schema"": ""https://json-schema.org/draft-07/schema#"",
+    ""$id"": ""my-product-schema"",
+    ""type"": ""object"",
+    ""properties"": {
+      ""subject"": {
+        ""type"": ""string"",
+        ""description"": ""Subject of the email""
+      },
+      ""content"": {
+        ""type"": ""string"",
+        ""description"": ""Content of the email""
+      },
+      ""customer"": {
+        ""allOf"": [
+          { ""$ref"": ""#/person"" },
+          {
+            ""required"": [ ""emailAddress"" ],
+            ""description"": ""Person with required email for email context""
+          }
+        ]
+      }
+    }
+  }"
+3;"2025-11-02 10:17:23";;true;product;Simple product;"{
+    ""$schema"": ""https://json-schema.org/draft-07/schema#"",
+    ""$id"": ""my-product-schema"",
+    ""type"": ""object"",
+    ""properties"": {
+      ""productId"": {
+        ""type"": ""integer"",
+        ""description"": ""The unique identifier for a product""
+      },
+      ""productName"": {
+        ""type"": ""string"",
+        ""description"": ""Name of the product""
+      },
+      ""tags"": {
+        ""type"": ""array"",
+        ""items"": {
+          ""type"": ""string""
+        },
+        ""description"": ""Tags associated with the product""
+      },
+      ""owner"": {
+        ""$ref"": ""#/person""
+      }
+    }
+  }"
