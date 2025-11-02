@@ -41,7 +41,8 @@
           }
         ]
       }
-    }
+    },
+    "required": [ "subject", "content", "customer" ]
   },
   "product": {
     "$id": "product",
