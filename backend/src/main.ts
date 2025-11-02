@@ -39,25 +39,18 @@ async function dbMigrations(app: NestExpressApplication, logger: ConsoleLogger) 
 
   try {
     const pendingMigrations = await migrator.getPendingMigrations()
-
     if (pendingMigrations.length === 0) {
       logger.log('No pending migrations.', 'main')
       return
     }
 
-    logger.log(`Found ${pendingMigrations.length} pending migration(s):`, 'main')
-    pendingMigrations.forEach(migration => {
-      logger.log(`  - ${migration.name}`, 'main')
-    })
+    const pm = pendingMigrations.map(m => m.name).join(', ')
+    logger.log(`Executing ${pendingMigrations.length} pending migration(s): ${pm}`, 'main')
 
-    logger.log('Executing pending migrations...', 'main')
     const executedMigrations = await migrator.up()
-
+    const msg = `Successfully executed ${executedMigrations.length} migration(s): ${executedMigrations.map(m => m.name).join(', ')}`
     if (executedMigrations.length > 0) {
-      logger.log(`Successfully executed ${executedMigrations.length} migration(s):`, 'main')
-      executedMigrations.forEach(migration => {
-        logger.log(`  ✓ ${migration.name}`, 'main')
-      })
+      logger.log(msg, 'main')
     }
   } catch (error) {
     logger.error(`Migration failed: ${error instanceof Error ? error.message : error}`, 'main')
