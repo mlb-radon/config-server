@@ -11,6 +11,7 @@ export interface Schema extends BaseEntity {
 export const SchemaSchema = new EntitySchema<Schema, BaseEntity>({
   name: 'Schema',
   extends: 'BaseEntity',
+  tableName: 'schema',
   properties: {
     fundamental: { type: 'boolean', default: false },
     code: { type: 'string', nullable: true },
