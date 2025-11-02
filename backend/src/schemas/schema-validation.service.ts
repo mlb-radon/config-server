@@ -31,8 +31,8 @@ export class SchemaValidationService {
     const schemas = all.map(s => s.jsonSchema)
     schemas.forEach(s => this.ajv.addSchema(typeof s === 'string' ? JSON.parse(s) : s))
     const fSchema = typeof fundamental === 'string' ? JSON.parse(fundamental) : fundamental
-    const validate = this.ajv.compile(fSchema)
-    const valid = validate(JSON.parse(emailData))
+    const validate = this.ajv.compile<Email>(fSchema)
+    const valid = validate(emailData)
     console.log(valid)
   }
 }
@@ -46,12 +46,13 @@ interface Email {
     emailAddress: string
   }
 }
-const emailData = `{
-  "subject": "Your reservation",
-  "content": "Your reservation is confirmed.",
-  "customer": {
-    "id": 321,
-    "name": "Stefaan Vandevelde",
-    "emailAddress": "stefaan.vandevelde@example.com"
-  }
-}`
+
+const emailData = {
+  subject: 'Your reservation',
+  content: 'Your reservation is confirmed.',
+  customer: {
+    id: 321,
+    name: 'Stefaan Vandevelde',
+    emailAddress: 'stefaan.vandevelde@example.com',
+  },
+}
