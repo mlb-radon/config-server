@@ -3,11 +3,6 @@ import { EntityManager } from '@mikro-orm/sqlite'
 import Ajv, { ErrorObject } from 'ajv'
 import { Schema } from '@src/database/entities/schema.entity'
 
-interface ValidationResult {
-  valid: boolean
-  errors?: ErrorObject[]
-}
-
 @Injectable()
 export class SchemaValidationService {
   constructor(private readonly em: EntityManager) {
