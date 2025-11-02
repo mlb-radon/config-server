@@ -16,7 +16,6 @@
     "semver": "^7.7.3"
   },
   "dependencies": {
-    "date-fns": "^4.1.0",
     "radashi": "^12.6.2"
   }
 }

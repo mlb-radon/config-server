@@ -3,12 +3,12 @@ import { AppController } from '@src/app.controller'
 import { AppService } from '@src/app.service'
 import { AppInfoService } from '@src/support/app-info.service'
 import { DatabaseModule } from './database/database.module'
-import { SchemaValidationService } from './schema-validation.service'
-import { SchemaController } from './schema.controller'
+// import { SchemaValidationService } from './schema-validation.service'
+// import { SchemaController } from './schema.controller'
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [AppController, SchemaController],
-  providers: [AppService, AppInfoService, SchemaValidationService],
+  controllers: [AppController],
+  providers: [AppService, AppInfoService],
 })
 export class AppModule {}

@@ -13,8 +13,7 @@ const dataFile = join(dataFolder, 'config-server.sqlite3')
   imports: [
     MikroOrmModule.forRoot({
       driver: SqliteDriver,
-      entities: ['./src/database/entities/**/*.entity.ts'],
-      entitiesTs: ['./src/database/entities/**/*.entity.ts'],
+      entities: [join(__dirname, './entities/*.entity.js')],
       dbName: dataFile,
       autoLoadEntities: true,
       forceUndefined: true,
