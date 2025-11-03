@@ -5,7 +5,7 @@ export interface ConfigData extends BaseEntity {
   code?: string
   schema: string
   environment: 'development' | 'test' | 'staging' | 'production'
-  programVersions: string // comma-separated list of semVer versions e.g. 1 applies to all 1.x.x versions, etc
+  programVersions: string // semver range, ref semver documentation
   description?: string
   value: string
 }
@@ -22,7 +22,7 @@ export const ConfigDataSchema = new EntitySchema<ConfigData, BaseEntity>({
       items: ['development', 'test', 'staging', 'production'],
       nullable: false,
     },
-    programVersions: { type: 'string', nullable: false, default: '' },
+    programVersions: { type: 'string', nullable: true, default: null },
     description: { type: 'string', nullable: true },
     value: { type: 'jsonb', nullable: false },
   },

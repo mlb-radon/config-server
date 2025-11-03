@@ -1,0 +1,14 @@
+{
+    "_id": "88ed086e-5506-4c17-acab-09e1e1a61707",
+    "name": "development",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2025-11-03T19:05:03.570Z",
+    "modified": "2025-11-03T19:05:03.571Z",
+    "data": [
+        {
+            "name": "baseUrl",
+            "value": "http://localhost:3000/api"
+        }
+    ]
+}

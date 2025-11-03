@@ -1,0 +1,33 @@
+{
+    "_id": "42baf8f9-7dd8-4a87-af43-56f1dc1f54dd",
+    "colName": "test",
+    "created": "2025-11-03T19:05:41.307Z",
+    "sortNum": 10000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "42dedc48-8399-407f-b402-6ac73ae91e4c",
+            "colId": "42baf8f9-7dd8-4a87-af43-56f1dc1f54dd",
+            "containerId": "",
+            "name": "get app info",
+            "url": "{{baseUrl}}/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-11-03T19:05:50.705Z",
+            "modified": "2025-11-03T19:06:03.993Z",
+            "headers": []
+        },
+        {
+            "_id": "9c90c33d-7097-4ae8-84ed-720ee10b0733",
+            "colId": "42baf8f9-7dd8-4a87-af43-56f1dc1f54dd",
+            "containerId": "",
+            "name": "get configuration",
+            "url": "{{baseUrl}}/config/email/0.0.2",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-11-03T19:46:40.962Z",
+            "modified": "2025-11-03T20:21:53.812Z",
+            "headers": []
+        }
+    ]
+}

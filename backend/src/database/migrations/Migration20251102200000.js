@@ -11,7 +11,7 @@ class Migration20251102200000 extends Migration {
       \`code\` text null,
       \`schema\` text not null,
       \`environment\` text check (\`environment\` in ('development', 'test', 'staging', 'production')) not null,
-      \`program_versions\` text not null default '',
+      \`program_versions\` text null default null,
       \`description\` text null,
       \`value\` json not null
     );`)
