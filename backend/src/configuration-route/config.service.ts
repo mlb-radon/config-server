@@ -18,7 +18,8 @@ export class ConfigService {
       .filter(s => s.fundamental)
       .find(s => s.code === code && satisfies(version, s.programVersions))?.jsonSchema
     if (!fundamental) {
-      throw new NotFoundException(`Schema with code '${code}' not found`)
+      const msg = `Schema with code '${code}' (version ${version}) not found`
+      throw new NotFoundException(msg)
     }
     const schemas = all.map(s => s.jsonSchema)
     schemas.forEach(s => ajv.addSchema(typeof s === 'string' ? JSON.parse(s) : s))
@@ -66,6 +67,16 @@ export class ConfigService {
         data = data.replaceAll(new RegExp(toReplace, 'g'), JSON.stringify(refMap.get(refCode)))
       }
       matches = [...data.matchAll(regex)]
+    }
+    const schemaValidator = await this.getSchema(code, version || '*')
+    const dataObj = JSON.parse(data)
+    const valid = schemaValidator(dataObj)
+    if (!valid) {
+      const msg = `Config data for '${code}' (${version}) does not ` + `conform with the schema`
+      throw new ConflictException({
+        message: msg,
+        errors: schemaValidator.errors,
+      })
     }
     return data
   }

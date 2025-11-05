@@ -9,3 +9,4 @@
 - Revisit the `npm version` problem
 - Add detailed logging
 - Nakijken of JSON-schema uitgebreid kan worden om gemakkellijker in een parent een child schema te tweaken (bvb optionals veranderen)
+- Logging toevoegen
