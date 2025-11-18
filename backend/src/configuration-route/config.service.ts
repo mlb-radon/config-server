@@ -1,8 +1,8 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common'
 import { EntityManager } from '@mikro-orm/sqlite'
 import Ajv from 'ajv'
-import { Schema, SchemaSchema } from '@src/database/entities/schema.entity'
-import { ConfigDataSchema } from '@src/database/entities/config-data.entity'
+import { Schema, SchemaSchema } from '@src/database/schemas/schema.schema'
+import { ConfigDataSchema } from '@src/database/schemas/config-data.schema'
 import { first, isString, isUndefined } from 'radashi'
 import { satisfies } from 'semver'
 

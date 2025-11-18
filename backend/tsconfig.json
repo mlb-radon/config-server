@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
+    "module": "NodeNext",
     "moduleResolution": "nodenext",
     "resolvePackageJsonExports": true,
     "esModuleInterop": true,
@@ -10,13 +10,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2023",
+    "target": "ESNext",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@src/*": ["*"],
-      "@shared/*": ["shared/*"]
+      "@src/*": [
+        "*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ]
     },
     "incremental": true,
     "skipLibCheck": true,

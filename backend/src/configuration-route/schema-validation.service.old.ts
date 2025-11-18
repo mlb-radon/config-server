@@ -2,7 +2,7 @@ import { Injectable, NotFoundException, BadRequestException } from '@nestjs/comm
 import { EntityManager } from '@mikro-orm/sqlite'
 import Ajv, { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
-import { Schema } from '@src/database/entities/schema.entity'
+import { Schema } from '@src/database/schemas/schema.schema'
 
 interface ValidationResult {
   valid: boolean
